@@ -14,11 +14,11 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="sender_name",nullable = false)
-    private String senderName;
+    @Column(name="sender_Id",nullable = false)
+    private Long senderId;
 
-    @Column(name="receiver_name",nullable = false)
-    private String receiverName;
+    @Column(name="receiver_Id",nullable = false)
+    private Long receiverId;
 
     @Column(nullable = false)
     @Positive(message="Amount must be positive")
@@ -27,20 +27,23 @@ public class Transaction {
     @Column(nullable = false)
     private LocalDateTime timestamp;
 
-    public String getSenderName() {
-        return senderName;
+    @Column(nullable = false)
+    private String status;
+
+    public Long getSenderId() {
+        return senderId;
     }
 
-    public void setSenderName(String senderName) {
-        this.senderName = senderName;
+    public void setSenderId(Long senderId) {
+        this.senderId = senderId;
     }
 
-    public String getReceiverName() {
-        return receiverName;
+    public Long getReceiverId() {
+        return receiverId;
     }
 
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
+    public void setReceiverId(Long receiverId) {
+        this.receiverId = receiverId;
     }
 
     public Long getId() {
@@ -75,19 +78,18 @@ public class Transaction {
         this.status = status;
     }
 
-    @Column(nullable = false)
-    private String status;
 
 
-    public Transaction(Long id, String status, LocalDateTime timestamp, Double amount, String receiverName, String senderName) {
+
+    public Transaction(Long id, String status, LocalDateTime timestamp, Double amount, Long receiverId, Long senderId) {
         this.id = id;
         this.status = status;
         this.timestamp = timestamp;
         this.amount = amount;
-        this.receiverName = receiverName;
-        this.senderName = senderName;
+        this.receiverId = receiverId;
+        this.senderId = senderId;
     }
 
-
-    
+    public Transaction() {
+    }
 }
